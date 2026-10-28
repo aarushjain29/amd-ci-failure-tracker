@@ -7,7 +7,7 @@ on:
     inputs:
       lookback_hours:
         description: "Hours of Buildkite history to scan"
-        default: "6"
+        default: "24"
 
 permissions:
   contents: read
@@ -31,4 +31,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          LOOKBACK_HOURS: ${{ inputs.lookback_hours || '6' }}
+          LOOKBACK_HOURS: ${{ inputs.lookback_hours || '24' }}

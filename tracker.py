@@ -8,7 +8,7 @@ needed). Each failure is recorded once, so the script is safe to rerun.
 Environment:
   GITHUB_TOKEN       token with issues:write on GITHUB_REPOSITORY
   GITHUB_REPOSITORY  owner/repo that receives the issues
-  LOOKBACK_HOURS     how far back to scan builds (default 6)
+  LOOKBACK_HOURS     how far back to scan builds (default 24)
   BRANCHES           comma-separated Buildkite branches (default "main")
   BUILD_HINT         a recent build number to start the search from
   DRY_RUN            "1" prints what would be filed instead of filing it
@@ -31,7 +31,7 @@ LABEL = "amd-ci-failure"
 TITLE = "[AMD CI] {name}"
 MARKER = "<!-- amd-ci-failure build={n} job={jid} -->"
 
-LOOKBACK = timedelta(hours=float(os.environ.get("LOOKBACK_HOURS", "6")))
+LOOKBACK = timedelta(hours=float(os.environ.get("LOOKBACK_HOURS", "24")))
 BRANCHES = set(os.environ.get("BRANCHES", "main").split(","))
 DRY_RUN = os.environ.get("DRY_RUN") == "1"
 REPO = os.environ.get("GITHUB_REPOSITORY", "")
